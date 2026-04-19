@@ -34,12 +34,30 @@ st.markdown("---")
 st.caption("Built with Python + Streamlit + NLP")
 
 skills_db = [
-"python", "java", "javascript", "sql", "react", "node",
-"machine learning", "deep learning", "nlp", "docker",
-"kubernetes", "aws", "azure", "git", "linux", "flask",
-"django", "tensorflow", "pytorch", "pandas", "numpy",
-"rest api", "mongodb", "postgresql", "data structures",
-"algorithms", "system design", "agile", "ci/cd",
+    # Languages
+    "python", "java", "javascript", "typescript", "c++", "c#", "go", "rust",
+    "ruby", "kotlin", "swift", "scala", "r", "matlab", "bash", "shell",
+    # Web
+    "react", "angular", "vue", "node", "express", "django", " ask", "fastapi",
+    "html", "css", "rest api", "graphql", "next.js",
+    # Data / ML / AI
+    "machine learning", "deep learning", "nlp", "computer vision",
+    "tensor ow", "pytorch", "keras", "scikit-learn", "hugging face",
+    "pandas", "numpy", "matplotlib", "seaborn", "opencv",
+    "data analysis", "data visualization", "feature engineering",
+    "model deployment", "mlops", "langchain", "llm",
+    # Databases
+    "sql", "mysql", "postgresql", "mongodb", "redis", "elasticsearch",
+    " rebase", "sqlite", "oracle", "cassandra",
+    # Cloud / DevOps
+    "aws", "azure", "gcp", "docker", "kubernetes", "terraform",
+    "ci/cd", "github actions", "jenkins", "linux", "git",
+    # Concepts
+    "data structures", "algorithms", "system design", "agile", "scrum",
+    "object oriented programming", "microservices", "api development",
+    "unit testing", "software development lifecycle",
+    # Tools
+    "power bi", "tableau", "excel", "jira", " gma", "postman",
 ]
 
 #TEXT EXTRACTION FROM PDF
