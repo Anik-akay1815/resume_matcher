@@ -164,21 +164,28 @@ if st.button("Analyze Match"):
 
     st.progress(int(score))
     col1, col2 = st.columns(2)
+
     with col1:
         st.subheader("Matched skills:")
+        st.markdown("<div style='max-height:300px; overflow-y:auto;'>", unsafe_allow_html=True)
         for skill in matched:
-            st.success(f"{skill}")
+            st.markdown(f"<p style='color:lightgreen'>{skill}</p>", unsafe_allow_html=True)
+        st.markdown("</div>", unsafe_allow_html=True)
+
+
     with col2:
         st.subheader("Missing skills:")
+        st.markdown("<div style='max-height:300px; overflow-y:auto;'>", unsafe_allow_html=True)
         for skill in missing:
-            st.error(f"{skill}")
+            st.markdown(f"<p style='color:#ff4b4b'>{skill}</p>", unsafe_allow_html=True)
+        st.markdown("</div>", unsafe_allow_html=True)
             
     if missing:
         st.markdown("---")
         st.subheader("How to improve your resume")
-        tips =[f"Add a skill section listing:{", ".join(missing[:3])}",
+        tips =[f"Add a skill section listing: {", ".join(missing[:3])}",
         "Tailor you project descirption to mention missing keywords",
         "Take a short course on the most critical missing skill",
         "Mirror the exact wording from the JD in your resume",]
         for i,tips in enumerate(tips,1):
-            st.info(f"{i},{tips}")
+            st.info(f"{i}. {tips}")
