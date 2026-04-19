@@ -70,7 +70,8 @@ def extract_text(uploaded_file):
 
 def clean_text(text):
     text = text.lower()
-    text = re.sub(r"[^a-z\s]", "", text)
+    text = re.sub(r"[^a-zA-Z0-9]", "", text)
+    text = re.sub(r"\s+", " ", text)
     words = text.split()
     stop_words = set(stopwords.words("english"))
     words = [w for w in words if w not in stop_words]
@@ -133,7 +134,16 @@ if resume_text and jd_text:
 
 if st.button("Analyze Match"):
     score = get_match_score(resume_text, jd_text)
-    matched, missing = get_skill_gap(resume_text, jd_text)
+    clean_resume = clean_text(resume_text)
+    clean_jd = clean_text(jd_text)
+
+    skills = [skill.lower() for skill in skills_db]
+
+    resume_skills = [skill for skill in skills if skill in clean_resume]
+    jd_skills = [skill for skill in skills if skill in clean_jd]
+
+    matched = list(set(resume_skills) & set(jd_skills))
+    missing = list(set(jd_skills) - set(resume_skills))
     
     m1, m2, m3 = st.columns(3)
     m1.metric("Match Score", f"{score}%")
