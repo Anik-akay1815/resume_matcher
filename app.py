@@ -35,20 +35,20 @@ st.caption("Built with Python + Streamlit + NLP")
 
 skills_db = [
     # Languages
-    "python", "java", "javascript", "typescript", "c++", "c#", "go", "rust",
-    "ruby", "kotlin", "swift", "scala", "r", "matlab", "bash", "shell",
+    "python", "java", "javascript", "typescript", "c++", "c#", "rust",
+    "ruby", "kotlin", "swift", "scala", "matlab", "bash", "shell",
     # Web
-    "react", "angular", "vue", "node", "express", "django", " ask", "fastapi",
+    "react", "angular", "vue", "node", "express", "django", "flask", "fastapi",
     "html", "css", "rest api", "graphql", "next.js",
     # Data / ML / AI
     "machine learning", "deep learning", "nlp", "computer vision",
-    "tensor ow", "pytorch", "keras", "scikit-learn", "hugging face",
+    "tensorflow", "pytorch", "keras", "scikit-learn", "hugging face",
     "pandas", "numpy", "matplotlib", "seaborn", "opencv",
     "data analysis", "data visualization", "feature engineering",
     "model deployment", "mlops", "langchain", "llm",
     # Databases
     "sql", "mysql", "postgresql", "mongodb", "redis", "elasticsearch",
-    " rebase", "sqlite", "oracle", "cassandra",
+    "firebase", "sqlite", "oracle", "cassandra",
     # Cloud / DevOps
     "aws", "azure", "gcp", "docker", "kubernetes", "terraform",
     "ci/cd", "github actions", "jenkins", "linux", "git",
@@ -57,7 +57,7 @@ skills_db = [
     "object oriented programming", "microservices", "api development",
     "unit testing", "software development lifecycle",
     # Tools
-    "power bi", "tableau", "excel", "jira", " gma", "postman",
+    "power bi", "tableau", "excel", "jira", "figma", "postman",
 ]
 
 #TEXT EXTRACTION FROM PDF
@@ -66,11 +66,11 @@ def extract_text(uploaded_file):
     reader = PyPDF2.PdfReader(uploaded_file)
     for page in reader.pages:
         text += page.extract_text()
-        return text
+    return text
 
 def clean_text(text):
     text = text.lower()
-    text = re.sub(r"[^a-zA-Z0-9]", "", text)
+    text = re.sub(r"[^a-zA-Z0-9]", " ", text)
     text = re.sub(r"\s+", " ", text)
     words = text.split()
     stop_words = set(stopwords.words("english"))
@@ -94,7 +94,8 @@ def extract_skills(text, skills_db):
     for skill in skills_db:
         if skill in text_lower:
             found.append(skill)
-            return found
+    
+    return found
 
 def get_skill_gap(resume_text, jd_text):
     resume_skills = extract_skills(resume_text, skills_db)
@@ -168,7 +169,7 @@ if st.button("Analyze Match"):
         for skill in matched:
             st.success(f"{skill}")
     with col2:
-        st.subheader("Mising skills:")
+        st.subheader("Missing skills:")
         for skill in missing:
             st.error(f"{skill}")
             
