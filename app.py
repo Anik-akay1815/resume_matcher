@@ -154,7 +154,7 @@ if st.button("Analyze Match"):
     st.progress(int(score))
     col1, col2 = st.columns(2)
     with col1:
-        st.subheader("Matcher skills:")
+        st.subheader("Matched skills:")
         for skill in matched:
             st.success(f"{skill}")
     with col2:
